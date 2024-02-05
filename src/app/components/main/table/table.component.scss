@@ -1,0 +1,21 @@
+$main-color: #494949;
+
+section{
+  background-color: $main-color;
+  .mat-mdc-table,.mat-mdc-paginator-outer-container {
+    background-color: $main-color;
+    color: white;
+    th{
+      color: white;
+    }
+    td{
+      color: white;
+    }
+
+  }
+  &::ng-deep .mat-mdc-paginator-container , &::ng-deep.mat-mdc-paginator .mat-mdc-select-value{
+    background-color: $main-color ;
+    color: white;
+  }
+
+}

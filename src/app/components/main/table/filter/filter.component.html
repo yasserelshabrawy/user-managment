@@ -1,0 +1,34 @@
+<div class="flex space-x-4 items-center text-white">
+  <div class="permissions flex justify-around max-lg:w-full">
+    <label for="permssions">Permssions</label>
+    <select #role (change)="filterRole(role.value)" name="permissions" id="permssions" class="cursor-pointer">
+      <option value="">All</option>
+      <option  [value]="role.name" *ngFor="let role of roles">{{role.name}}</option>
+    </select>
+  </div>
+<div class="date flex justify-around max-lg:w-full">
+  <label for="joined">Joined</label>
+  <select  name="joined" id="joined" [(ngModel)]="selectedFilter" (change)="selectDate()" class="cursor-pointer">
+    <option value="">Anytime</option>
+    <option value="date">Date</option>
+  </select>
+  <input #date matInput (change)="filterDate(date.value)" *ngIf="selectedFilter === 'date'" type="date" placeholder="specificDate" id="specificDate" class="text-black" />
+</div>
+
+  <div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="menu"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+      />
+    </svg>
+  </div>
+</div>

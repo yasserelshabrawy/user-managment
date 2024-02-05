@@ -1,0 +1,72 @@
+<section class="h-screen">
+  <div class="container mx-auto">
+    <div class="mx-5 md:mx-0">
+      <h1 class="text-2xl font-semibold max-md:text-center text-white pt-5">
+        User Managment
+      </h1>
+      <div class="flex flex-wrap max-lg:gap-2 items-center">
+        <div class="md:flex w-full lg:w-7/12">
+          <app-search
+            (search)="searchByName($event)"
+            class="max-lg:w-full"
+          ></app-search>
+          <app-filter
+            (selectDate)="selectDate($event)"
+            (filterDate)="filterDate($event)"
+            (filterRole)="filterRole($event)"
+            class="max-lg:w-full"
+          ></app-filter>
+        </div>
+
+        <app-new-user
+          (newUser)="newUser($event)"
+          class="w-full lg:w-5/12"
+        ></app-new-user>
+      </div>
+    </div>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="mt-5 ">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let user">{{ this.user.username }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef>Role</th>
+          <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="joined">
+          <th mat-header-cell *matHeaderCellDef>Joined</th>
+          <td mat-cell *matCellDef="let user">{{ user.joined }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Edit">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let user">
+            <button (click)="delete(user.id)" mat-raised-button color="primary" class="mr-2">
+              Delete
+            </button>
+            <button (click)="update(user)" mat-raised-button color="warn">
+              Update
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic users"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</section>

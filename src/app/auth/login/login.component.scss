@@ -1,0 +1,108 @@
+$gradientColor1: #560bad;
+$gradeintColor2: #8e60c4;
+$formBackgroundColor: #300169;
+$pinkOutline: #a31a6a;
+$loginButtonColor: rgb(96, 196, 96);
+$loginButtonTextColor: white;
+$newAccountButtonColor: #ffd60a;
+$newAccountButtonTextColor: rgb(36, 34, 34);
+$inputBackgroundColor: #2b045c;
+$inputPlaceholderColor: rgba(255, 255, 255, 0.548);
+$loginWithAccountsTextColor: white;
+$inputTextColor: white;
+$forgetHoverColor: white;
+
+
+
+@mixin enableFlex($direction: false) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @if $direction {
+    flex-direction: column;
+  }
+}
+body {
+  background: linear-gradient(to right, $gradientColor1, $gradeintColor2);
+  height: 100vh;
+  width: 100vw;
+  @include enableFlex();
+}
+
+@mixin buttonStyles($backgroundColor, $fontColor) {
+  padding: 0.8rem 1.5rem;
+  width: 22rem;
+  border-radius: 0.2rem;
+  outline: none;
+  border: none;
+  font-size: medium;
+  background-color: $backgroundColor;
+  color: $fontColor;
+  cursor: pointer;
+  transition: background 0.5s;
+  &:disabled{
+    cursor: default;
+    background-color: #570bad52;
+
+}
+}
+
+input {
+  padding: 0.8rem 1rem;
+  width: 22rem;
+  border-radius: 0.2rem;
+  border: $pinkOutline 0.01rem solid;
+  color: $inputTextColor;
+  background-color: $inputBackgroundColor;
+  margin-bottom: 0.8rem;
+  font-size: large;
+  &::placeholder {
+    color: $inputPlaceholderColor;
+  }
+}
+
+
+.container {
+  height: 75vh;
+  width: 80vw;
+  background-color: $formBackgroundColor;
+  .section-one {
+    @include enableFlex(true);
+    height: 80%;
+    border-bottom: 0.05rem $pinkOutline solid;
+    .main-form {
+      @include enableFlex(true);
+      button {
+        @include buttonStyles($loginButtonColor, $loginButtonTextColor);
+      }
+      a {
+        text-decoration: none;
+        @include enableFlex();
+        color: $pinkOutline;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        transition: 0.3s ease-in-out;
+        &:hover {
+          color: $forgetHoverColor;
+        }
+      }
+    }
+  }
+
+}
+
+
+@media only screen and (max-width: 768px) {
+  .container {
+    height: 35rem;
+      .main-form {
+        input {
+          width: 15rem;
+        }
+        button {
+          width: 15rem;
+        }
+      }
+    }
+
+}

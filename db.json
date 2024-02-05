@@ -1,0 +1,76 @@
+{
+  "register": [
+    {
+      "username": "Admin",
+      "email": "admin@admin.com",
+      "password": "Admin123",
+      "role": "Admin"
+    }
+  ],
+  "login": [
+    {
+      "email": "admin@admin.com",
+      "password": "Admin123",
+      "username": "Admin",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "username": "mohand",
+      "email": "mohand1998@1",
+      "joined": "02/06/2024",
+      "role": "Contributer",
+      "id": 4
+    },
+    {
+      "username": "ahmed",
+      "email": "ahmed@gmail",
+      "joined": "02/29/2024",
+      "role": "Contributer",
+      "id": 5
+    },
+    {
+      "username": "yassen",
+      "email": "yasoo",
+      "joined": "02/29/2024",
+      "role": "Contributer",
+      "id": 6
+    },
+    {
+      "username": "ammar",
+      "email": "ammar@",
+      "joined": "02/10/2024",
+      "role": "Admin",
+      "id": 7
+    },
+    {
+      "username": "ahmed",
+      "email": "ahmed@1198",
+      "joined": "02/22/2024",
+      "role": "Viewer",
+      "id": 9
+    },
+    {
+      "username": "user",
+      "email": "user98@gmail",
+      "joined": "02/24/2024",
+      "role": "Contributer",
+      "id": 10
+    }
+  ],
+  "roles": [
+    {
+      "name": "Admin",
+      "id": 1
+    },
+    {
+      "name": "Viewer",
+      "id": 2
+    },
+    {
+      "name": "Contributer",
+      "id": 3
+    }
+  ]
+}

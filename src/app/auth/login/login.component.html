@@ -1,0 +1,54 @@
+<body>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="container">
+    <div class="section-one">
+      <div class="main-form">
+        <h1 class="text-white">Login Now</h1>
+        <input
+          type="email"
+          formControlName="email"
+          name="email"
+          placeholder="Email"
+        />
+        <div
+          *ngIf="
+            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          "
+        >
+          <div
+            *ngIf="loginForm.get('email')?.errors?.['required']"
+            class="bg-red-800 text-white block mb-1"
+          >
+            Email is required
+          </div>
+        </div>
+        <input
+          type="password"
+          formControlName="password"
+          name="password"
+          placeholder="Password"
+        />
+        <div
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+          "
+        >
+          <div
+            *ngIf="loginForm.get('password')?.errors?.['required']"
+            class="bg-red-800 text-white block mb-1"
+          >
+            password is required
+          </div>
+          <div
+            *ngIf="loginForm.get('password')?.errors?.['pattern']"
+            class="bg-red-800 text-white block mb-1"
+          >
+            password must be include at least 1 chars is uppercase and at least
+            8 chars
+          </div>
+        </div>
+        <button [disabled]="loginForm.invalid">Login</button>
+      </div>
+    </div>
+  </form>
+</body>
