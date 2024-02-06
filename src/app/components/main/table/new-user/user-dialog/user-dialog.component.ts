@@ -53,6 +53,9 @@ export class UserDialogComponent implements OnInit {
   close(res: any) {
     this.dialogRef.close(res);
   }
+  closeD(){
+    this.dialogRef.close();
+  }
 
   addUser() {
     const formattedDate = this.datePipe.transform(
