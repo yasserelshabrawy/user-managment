@@ -19,3 +19,40 @@ section{
   }
 
 }
+
+.mat-elevation-z8 {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  @media screen and (max-width: 600px) {
+    th, td {
+      font-size: 12px;
+      padding: 8px;
+    }
+
+    th.mat-header-cell, td.mat-cell {
+      display: block;
+      text-align: left;
+    }
+
+    th.mat-header-cell {
+      display: none;
+    }
+
+    td.mat-cell {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+}
+
+button[mat-raised-button] {
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+

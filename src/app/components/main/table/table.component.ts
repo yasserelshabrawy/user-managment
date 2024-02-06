@@ -1,5 +1,5 @@
 import { User } from './../../../models/user';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -13,17 +13,36 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent {
+export class TableComponent implements OnInit{
   user: User[] = [];
-  constructor(private userService: UserService, private dialog: MatDialog, private snackBar:MatSnackBar) {}
-  displayedColumns: string[] = ['name', 'email', 'role', 'joined', 'Edit'];
+  selectedAll: User[] = [];
+  selected: boolean = false;
+  constructor(
+    private userService: UserService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
+  displayedColumns: string[] = [
+    'select',
+    'name',
+    'email',
+    'role',
+    'joined',
+    'Edit',
+  ];
   dataSource = new MatTableDataSource<User>(this.user);
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  ngOnInit() {
     this.getUser();
+  }
+
+  getUser() {
+    this.userService.getUser().subscribe((res: any) => {
+      this.user = res;
+      this.dataSource = new MatTableDataSource<User>(this.user);
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   newUser(addUser: any) {
@@ -32,13 +51,7 @@ export class TableComponent {
       this.dataSource = new MatTableDataSource<User>(this.user);
       this.dataSource.paginator = this.paginator;
     }
-  }
-  getUser() {
-    this.userService.getUser().subscribe((res: any) => {
-      this.user = res;
-      this.dataSource = new MatTableDataSource<User>(this.user);
-      this.dataSource.paginator = this.paginator;
-    });
+
   }
 
   searchByName(value: string) {
@@ -70,22 +83,50 @@ export class TableComponent {
       this.user = this.user.filter((user) => user.id !== id);
       this.dataSource = new MatTableDataSource<User>(this.user);
       this.dataSource.paginator = this.paginator;
-      this.snackBar.open('user deleted successfully' , "Success" ,{
-        horizontalPosition:'right',
-        verticalPosition:'top',
-        duration:2000
-      })
+      this.snackBar.open('user deleted successfully', 'Success', {
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+        duration: 2000,
+      });
     });
   }
 
-  update(user:User) {
+  update(user: User) {
     const dialogRef = this.dialog.open(UserDialogComponent, {
       width: '650px',
-      data: user
+      data: user,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.getUser()
+      this.getUser();
+    });
+  }
+
+  selectedUsers() {
+    if (this.selected) this.selectedAll = this.user;
+    else this.selectedAll = [];
+  }
+
+  checkBox(ele: User) {
+    let index = this.selectedAll.findIndex((user) => user.id == ele.id);
+    if (index === -1) this.selectedAll.push(ele);
+    else this.selectedAll.splice(index, 1);
+  }
+
+  deleteAll() {
+    this.selectedAll.forEach((item: any) => {
+      this.userService.deleteUser(item?.id).subscribe(() => {
+        this.snackBar.open('user deleted successfully', 'Success', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 2000,
+        });
+        this.selected = false
+        this.selectedAll = [];
+        this.user = this.user.filter((user) => user.id !== item.id);
+        this.dataSource = new MatTableDataSource<User>(this.user);
+        this.dataSource.paginator = this.paginator;
+      });
     });
   }
 }

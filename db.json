@@ -13,50 +13,34 @@
       "password": "Admin123",
       "username": "Admin",
       "id": 1
+    },
+    {
+      "email": "admin@admin.com",
+      "password": "Admin123",
+      "username": "Admin",
+      "id": 2
+    },
+    {
+      "email": "admin@admin.com",
+      "password": "Admin123",
+      "username": "Admin",
+      "id": 3
     }
   ],
   "users": [
     {
-      "username": "mohand",
-      "email": "mohand1998@1",
+      "username": "ahmed",
+      "email": "ahmed@com",
       "joined": "02/06/2024",
-      "role": "Contributer",
-      "id": 4
-    },
-    {
-      "username": "ahmed",
-      "email": "ahmed@gmail",
-      "joined": "02/29/2024",
-      "role": "Contributer",
-      "id": 5
-    },
-    {
-      "username": "yassen",
-      "email": "yasoo",
-      "joined": "02/29/2024",
-      "role": "Contributer",
-      "id": 6
-    },
-    {
-      "username": "ammar",
-      "email": "ammar@",
-      "joined": "02/10/2024",
       "role": "Admin",
-      "id": 7
+      "id": 1
     },
     {
-      "username": "ahmed",
-      "email": "ahmed@1198",
-      "joined": "02/22/2024",
-      "role": "Viewer",
-      "id": 9
-    },
-    {
-      "username": "user",
-      "email": "user98@gmail",
-      "joined": "02/24/2024",
+      "username": "hani",
+      "email": "hani98",
+      "joined": "02/29/2024",
       "role": "Contributer",
-      "id": 10
+      "id": 2
     }
   ],
   "roles": [
